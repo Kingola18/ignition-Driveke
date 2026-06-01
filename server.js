@@ -306,7 +306,7 @@ app.get('/api/cars', (req, res) => {
             transmission: "Automatic",
             description: "Mercedes-Benz C200 Avant-Garde - Luxury sedan with sporty styling.",
             price: 1950000
-        }
+        },
         {
             id: 16,
             images: [
