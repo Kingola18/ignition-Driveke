@@ -33,8 +33,8 @@ app.get('/api/cars', (req, res) => {
         {
             id: 2,
             images: [
-                "/images/" + encodeURIComponent("WhatsApp Image 2026-05-28 at 21.28.46.jpeg"),
                 "/images/" + encodeURIComponent("WhatsApp Image 2026-05-28 at 21.28.51.jpeg"),
+                "/images/" + encodeURIComponent("WhatsApp Image 2026-05-28 at 21.28.46.jpeg"),
                 "/images/" + encodeURIComponent("WhatsApp Image 2026-05-28 at 21.28.53.jpeg"),
                 "/images/" + encodeURIComponent("WhatsApp Image 2026-05-28 at 21.28.56.jpeg")
             ],
@@ -49,8 +49,8 @@ app.get('/api/cars', (req, res) => {
         {
             id: 3,
             images: [
-                "/images/" + encodeURIComponent("WhatsApp Image 2026-05-28 at 21.30.19 (2).jpeg"),
-                "/images/" + encodeURIComponent("WhatsApp Image 2026-05-28 at 21.30.11.jpeg"),
+                "/images/" + encodeURIComponent("WhatsApp Image 2026-05-28 at 21.30.20 (1).jpeg"),
+                "/images/" + encodeURIComponent("/WhatsApp Image 2026-05-28 at 21.30.19 (2).jpeg"),
                 "/images/" + encodeURIComponent("WhatsApp Image 2026-05-28 at 21.30.12.jpeg"),
                 "/images/" + encodeURIComponent("WhatsApp Image 2026-05-28 at 21.30.16.jpeg")
             ],
@@ -226,8 +226,8 @@ app.get('/api/cars', (req, res) => {
         {
             id: 12,
             images: [
-                "/images/" + encodeURIComponent("DemioCW Image 2026-05-31 at 16.09.33 (1).jpeg"),
                 "/images/" + encodeURIComponent("DemioCW Image 2026-05-31 at 16.09.33.jpeg"),
+                "/images/" + encodeURIComponent("DemioCW Image 2026-05-31 at 16.09.33 (1).jpeg"),
                 "/images/" + encodeURIComponent("DemioCW Image 2026-05-31 at 16.09.34 (1).jpeg"),
                 "/images/" + encodeURIComponent("DemioCW Image 2026-05-31 at 16.09.34 (2).jpeg"),
                 "/images/" + encodeURIComponent("DemioCW Image 2026-05-31 at 16.09.34.jpeg"),
