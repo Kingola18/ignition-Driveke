@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IGNITION DRIVEKE - Driven with Passion, Fueled by Quality</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-void:      #080808;
+      --bg-deep:      #0e0e0e;
+      --bg-card:      #121212;
+      --bg-raised:    #1a1a1a;
+      --bg-hover:     #222222;
+      --border:       rgba(255,255,255,0.07);
+      --border-mid:   rgba(255,255,255,0.13);
+      --border-accent:rgba(255,255,255,0.25);
+      --accent:       #ff6b00;
+      --accent-dim:   #cc5500;
+      --accent-glow:  rgba(255,107,0,0.15);
+      --accent-red:   #e84a4a;
+      --text-primary: #f0ede6;
+      --text-mid:     #9a9690;
+      --text-muted:   #5a5752;
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-body:    'Rajdhani', sans-serif;
+      --font-mono:    'Space Mono', monospace;
+      --radius:       4px;
+      --radius-lg:    8px;
+      --transition:   0.2s ease;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg-void);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.5;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; font-family: var(--font-body); border: none; background: none; }
+    input, select { font-family: var(--font-body); }
+    img { display: block; width: 100%; object-fit: cover; }
+    ul { list-style: none; }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg-deep); }
+    ::-webkit-scrollbar-thumb { background: var(--border-accent); border-radius: 3px; }
+    #topbar {
+      background: var(--accent);
+      color: #fff;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-align: center;
+      padding: 6px 1rem;
+    }
+    #navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(8,8,8,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2.5rem;
+      height: 68px;
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      letter-spacing: 0.12em;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .nav-logo img { 
+      width: 48px; 
+      height: 48px; 
+      border-radius: 8px; 
+      object-fit: contain;
+      filter: drop-shadow(0 0 8px rgba(255,107,0,0.4));
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-logo .logo-sub {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 400;
+      color: var(--text-muted);
+      letter-spacing: 0.2em;
+      display: block;
+      line-height: 1;
+      margin-top: -2px;
+    }
+    .nav-links { display: flex; align-items: center; gap: 2rem; }
+    .nav-links a {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: var(--text-mid);
+      text-transform: uppercase;
+      transition: color var(--transition);
+    }
+    .nav-links a:hover { color: var(--text-primary); }
+    .nav-cta {
+      background: var(--accent);
+      color: #fff !important;
+      padding: 8px 18px !important;
+      border-radius: var(--radius);
+      font-weight: 700 !important;
+    }
+    .nav-cta:hover { background: var(--accent-dim) !important; }
+    #hero {
+      position: relative;
+      height: 70vh;
+      min-height: 500px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: var(--bg-void);
+    }
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+    #hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(255,107,0,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-content { position: relative; z-index: 2; text-align: center; padding: 0 2rem; }
+    .hero-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.35em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 8vw, 7rem);
+      letter-spacing: 0.04em;
+      line-height: 0.92;
+      color: var(--text-primary);
+      margin-bottom: 1.5rem;
+    }
+    .hero-title .gold { color: var(--accent); }
+    .hero-subtitle {
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: var(--text-mid);
+      letter-spacing: 0.06em;
+      max-width: 520px;
+      margin: 0 auto 2rem;
+    }
+    .hero-actions { display: flex; gap: 1rem; justify-content: center; }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      padding: 13px 32px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      border-radius: var(--radius);
+      transition: all var(--transition);
+      display: inline-block;
+    }
+    .btn-primary:hover { background: var(--accent-dim); }
+    .btn-ghost {
+      border: 1px solid var(--border-accent);
+      color: var(--text-mid);
+      padding: 13px 32px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      border-radius: var(--radius);
+      transition: all var(--transition);
+      display: inline-block;
+    }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+    /* Filter Section */
+    #filter-section {
+      background: var(--bg-deep);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 1.6rem 2.5rem;
+      position: sticky;
+      top: 68px;
+      z-index: 900;
+    }
+    .filter-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.2rem;
+    }
+    .filter-title {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+    .filter-count {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--accent);
+    }
+    .filter-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr) auto auto;
+      gap: 10px;
+      align-items: end;
+    }
+    .filter-group { display: flex; flex-direction: column; gap: 5px; }
+    .filter-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+    .filter-select, .filter-input {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-size: 14px;
+      padding: 8px 12px;
+      width: 100%;
+      appearance: none;
+      -webkit-appearance: none;
+      transition: border-color var(--transition);
+      cursor: pointer;
+    }
+    .filter-select:hover, .filter-input:hover { border-color: var(--border-mid); }
+    .filter-select:focus, .filter-input:focus { outline: none; border-color: var(--accent); }
+    .filter-select option { background: var(--bg-deep); }
+    .btn-filter-apply {
+      background: var(--accent);
+      color: #fff;
+      padding: 8px 20px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      border-radius: var(--radius);
+      height: 38px;
+      white-space: nowrap;
+    }
+    .btn-filter-apply:hover { background: var(--accent-dim); }
+    .btn-filter-reset {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 8px 16px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      border-radius: var(--radius);
+      height: 38px;
+      white-space: nowrap;
+    }
+    .btn-filter-reset:hover { border-color: var(--accent-red); color: var(--accent-red); }
+    /* Inventory */
+    #inventory { max-width: 1440px; margin: 0 auto; padding: 3rem 2.5rem 5rem; }
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1.2rem;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 2.4rem;
+      letter-spacing: 0.08em;
+      color: var(--text-primary);
+    }
+    .section-title span { color: var(--accent); }
+    #car-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.5rem;
+    }
+    .car-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: transform 0.25s ease, border-color 0.25s ease;
+      cursor: pointer;
+    }
+    .car-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--border-mid);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+    .car-img-wrap { position: relative; height: 220px; background: var(--bg-raised); overflow: hidden; }
+    .car-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+    .car-card:hover .car-img-wrap img { transform: scale(1.04); }
+    .car-img-placeholder {
+      width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+      color: var(--text-muted); font-family: var(--font-mono); font-size: 11px;
+      background: linear-gradient(135deg, var(--bg-raised) 0%, var(--bg-card) 100%);
+    }
+    .car-info { padding: 1.2rem; }
+    .car-make {
+      font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.22em;
+      color: var(--accent); text-transform: uppercase; margin-bottom: 3px;
+    }
+    .car-model { font-family: var(--font-display); font-size: 1.65rem; letter-spacing: 0.06em; margin-bottom: 0.8rem; }
+    .car-specs { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
+    .spec-item { display: flex; flex-direction: column; gap: 1px; }
+    .spec-label { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.18em; color: var(--text-muted); text-transform: uppercase; }
+    .spec-val { font-size: 13px; font-weight: 600; color: var(--text-mid); }
+    .car-desc { font-size: 13px; color: var(--text-muted); line-height: 1.55; margin-bottom: 0.8rem; }
+    .car-footer { display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: 0.8rem; border-top: 1px solid var(--border); }
+    .car-price { display: flex; flex-direction: column; }
+    .price-label { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.18em; color: var(--text-muted); text-transform: uppercase; }
+    .price-val { font-family: var(--font-display); font-size: 1.8rem; letter-spacing: 0.04em; color: var(--accent); }
+    .btn-inquire {
+      background: transparent; border: 1px solid var(--border-accent); color: var(--text-mid);
+      padding: 8px 16px; font-family: var(--font-mono); font-size: 10px;
+      letter-spacing: 0.15em; text-transform: uppercase; border-radius: var(--radius);
+      transition: all var(--transition); white-space: nowrap;
+    }
+    .btn-inquire:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+    #no-results {
+      display: none; text-align: center; padding: 5rem 2rem;
+      color: var(--text-muted); font-family: var(--font-mono); font-size: 13px; grid-column: 1 / -1;
+    }
+    /* Contact Bar */
+    .contact-bar {
+      background: var(--bg-card); border: 1px solid var(--accent); border-radius: var(--radius-lg);
+      padding: 1rem 2rem; display: flex; align-items: center; justify-content: center;
+      gap: 2rem; flex-wrap: wrap; margin-bottom: 2rem;
+    }
+    .contact-item {
+      display: flex; align-items: center; gap: 0.5rem; color: var(--text-primary);
+      text-decoration: none; padding: 0.5rem 1rem; border-radius: 6px;
+      background: var(--bg-raised); border: 1px solid var(--border);
+      font-family: var(--font-mono); font-size: 13px;
+    }
+    .contact-item:hover { border-color: var(--accent); }
+    .contact-number { font-weight: 700; color: var(--accent); }
+    /* Footer */
+    footer {
+      text-align: center; padding: 2rem; color: var(--text-muted);
+      border-top: 2px solid var(--accent); font-family: var(--font-mono); font-size: 12px;
+    }
+    footer a { color: var(--accent); font-weight: 700; }
+    @media (max-width: 900px) {
+      #navbar { padding: 0 1.2rem; }
+      .nav-links { display: none; }
+      .filter-grid { grid-template-columns: repeat(2, 1fr); }
+      #car-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+    }
+    @media (max-width: 600px) {
+      .hero-title { font-size: 3rem; }
+      .filter-grid { grid-template-columns: 1fr 1fr; }
+      #car-grid { grid-template-columns: 1fr; }
+      .contact-bar { flex-direction: column; gap: 0.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOPBAR -->
+  <div id="topbar">
+    📞 Book a Test Drive: <strong>0797 154 280</strong> | <strong>0759 267 735</strong> | Driven with Passion, Fueled by Quality
+  </div>
+
+  <!-- NAVBAR -->
+  <nav id="navbar">
+    <div class="nav-logo">
+      <!-- IGNITION DRIVEKE LOGO -->
+      <img src="/images/ignitiondrive.png" 
+           alt="Ignition Driveke Logo" 
+           onerror="this.src='https://i.imgur.com/DrfFglo.png'">
+      <div>
+        IGNITION <span>DRIVEKE</span>
+        <span class="logo-sub">Driven with Passion • Fueled by Quality</span>
+      </div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#inventory">Inventory</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="tel:0797154280">0797 154 280</a></li>
+      <li><a href="https://wa.me/254797154280" class="nav-cta" target="_blank">💬 WhatsApp</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-content">
+      <p class="hero-eyebrow">Premium Automobile Gallery</p>
+      <h1 class="hero-title">DRIVE<br>YOUR <span class="gold">DREAM</span></h1>
+      <p class="hero-subtitle">Curated selection of quality pre-owned vehicles — ready to be yours.</p>
+      <div class="hero-actions">
+        <a href="#inventory" class="btn-primary">Explore Inventory</a>
+        <a href="https://wa.me/254797154280" class="btn-ghost" target="_blank">WhatsApp Us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FILTERS -->
+  <section id="filter-section">
+    <div class="filter-header">
+      <span class="filter-title">Filter Inventory</span>
+      <span class="filter-count" id="result-count">— vehicles found</span>
+    </div>
+    <div class="filter-grid">
+      <div class="filter-group">
+        <label class="filter-label" for="f-make">Make</label>
+        <select class="filter-select" id="f-make"><option value="">All Makes</option></select>
+      </div>
+      <div class="filter-group">
+        <label class="filter-label" for="f-model">Model</label>
+        <input class="filter-input" type="text" id="f-model" placeholder="e.g. Demio, C200...">
+      </div>
+      <div class="filter-group">
+        <label class="filter-label" for="f-year">Year</label>
+        <input class="filter-input" type="number" id="f-year" placeholder="e.g. 2016">
+      </div>
+      <div class="filter-group">
+        <label class="filter-label" for="f-engine">Engine Size</label>
+        <select class="filter-select" id="f-engine"><option value="">All Engine Sizes</option></select>
+      </div>
+      <div class="filter-group">
+        <label class="filter-label" for="f-transmission">Transmission</label>
+        <select class="filter-select" id="f-transmission"><option value="">All Transmissions</option></select>
+      </div>
+      <button class="btn-filter-apply" id="btn-apply">Search</button>
+      <button class="btn-filter-reset" id="btn-reset">Clear</button>
+    </div>
+  </section>
+
+  <!-- INVENTORY -->
+  <section id="inventory">
+    <div class="section-header">
+      <h2 class="section-title">OUR <span>INVENTORY</span></h2>
+    </div>
+
+    <!-- Contact Bar -->
+    <div class="contact-bar">
+      <span style="color:var(--text-muted);font-family:var(--font-mono);font-size:12px;">📞 Book a Test Drive:</span>
+      <a href="tel:0797154280" class="contact-item">📱 <span class="contact-number">0797 154 280</span></a>
+      <a href="tel:0759267735" class="contact-item">📱 <span class="contact-number">0759 267 735</span></a>
+      <a href="https://wa.me/254797154280" class="contact-item" target="_blank">💬 WhatsApp</a>
+    </div>
+
+    <div id="car-grid"></div>
+    <div id="no-results">
+      <h3 style="font-family:var(--font-display);font-size:2rem;color:var(--text-primary);margin-bottom:0.5rem;">No Vehicles Found</h3>
+      <p>Try adjusting your filters to see more results.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    &copy; 2026 IGNITION DRIVEKE. All rights reserved. | Driven with Passion, Fueled by Quality
+    <br><br>
+    📞 <a href="tel:0797154280">0797 154 280</a> | <a href="tel:0759267735">0759 267 735</a> | <a href="https://wa.me/254797154280" target="_blank">WhatsApp</a>
+  </footer>
+
+  <script>
+    const API = '/api/cars';
+    let allCars = [];
+    let filteredCars = [];
+
+    async function boot() {
+      try {
+        const res = await fetch(API);
+        allCars = await res.json();
+        filteredCars = [...allCars];
+        populateFilters();
+        renderGrid(filteredCars);
+        updateCount(allCars.length);
+      } catch (err) {
+        console.error('Failed to load cars:', err);
+        document.getElementById('car-grid').innerHTML = '<div id="no-results" style="display:block;"><h3>Error Loading Inventory</h3><p>Please try again later.</p></div>';
+      }
+    }
+
+    async function populateFilters() {
+      try {
+        const res = await fetch('/api/filters');
+        const data = await res.json();
+        data.makes.forEach(m => addOption('f-make', m, m));
+        data.engineSizes.forEach(e => addOption('f-engine', e, e));
+        data.transmissions.forEach(t => addOption('f-transmission', t, t));
+      } catch (err) {
+        const makes = [...new Set(allCars.map(c => c.make))].sort();
+        const engines = [...new Set(allCars.map(c => c.engineSize))].sort();
+        const trans = [...new Set(allCars.map(c => c.transmission))].sort();
+        makes.forEach(m => addOption('f-make', m, m));
+        engines.forEach(e => addOption('f-engine', e, e));
+        trans.forEach(t => addOption('f-transmission', t, t));
+      }
+    }
+
+    function addOption(id, val, label) {
+      const opt = document.createElement('option');
+      opt.value = val; opt.textContent = label;
+      document.getElementById(id).appendChild(opt);
+    }
+
+    function applyFilters() {
+      const make = document.getElementById('f-make').value;
+      const model = document.getElementById('f-model').value.trim().toLowerCase();
+      const year = document.getElementById('f-year').value;
+      const engine = document.getElementById('f-engine').value;
+      const transmission = document.getElementById('f-transmission').value;
+
+      filteredCars = allCars.filter(car => {
+        if (make && car.make !== make) return false;
+        if (model && !car.model.toLowerCase().includes(model)) return false;
+        if (year && car.year.toString() !== year) return false;
+        if (engine && car.engineSize !== engine) return false;
+        if (transmission && car.transmission !== transmission) return false;
+        return true;
+      });
+
+      renderGrid(filteredCars);
+      updateCount(filteredCars.length);
+    }
+
+    function resetFilters() {
+      ['f-make','f-model','f-year','f-engine','f-transmission'].forEach(id => document.getElementById(id).value = '');
+      filteredCars = [...allCars];
+      renderGrid(filteredCars);
+      updateCount(filteredCars.length);
+    }
+
+    function updateCount(n) {
+      document.getElementById('result-count').textContent = `${n} vehicle${n !== 1 ? 's' : ''} found`;
+    }
+
+    function renderGrid(cars) {
+      const grid = document.getElementById('car-grid');
+      const noResults = document.getElementById('no-results');
+      grid.innerHTML = '';
+
+      if (!cars.length) {
+        noResults.style.display = 'block';
+        return;
+      }
+      noResults.style.display = 'none';
+
+      cars.forEach((car, idx) => {
+        const card = document.createElement('div');
+        card.className = 'car-card';
+        card.style.animationDelay = `${idx * 0.05}s`;
+
+        let images = car.images || car.image || [];
+        if (!Array.isArray(images)) images = [images];
+        const firstImg = images.length > 0 ? images[0] : null;
+
+        const imgContent = firstImg
+          ? `<img src="${firstImg}" alt="${car.make} ${car.model}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=\\'car-img-placeholder\\'>Image Not Available</div>'">`
+          : `<div class="car-img-placeholder">Image Coming Soon</div>`;
+
+        const priceDisplay = typeof car.price === 'number'
+          ? 'KSh ' + car.price.toLocaleString()
+          : 'KSh ' + car.price;
+
+        card.innerHTML = `
+          <div class="car-img-wrap">${imgContent}</div>
+          <div class="car-info">
+            <div class="car-make">${car.make}</div>
+            <div class="car-model">${car.model}</div>
+            <div class="car-specs">
+              <div class="spec-item"><span class="spec-label">Year</span><span class="spec-val">${car.year}</span></div>
+              <div class="spec-item"><span class="spec-label">Engine</span><span class="spec-val">${car.engineSize}</span></div>
+              <div class="spec-item"><span class="spec-label">Gearbox</span><span class="spec-val">${car.transmission}</span></div>
+              ${car.mileage ? `<div class="spec-item"><span class="spec-label">Mileage</span><span class="spec-val">${car.mileage.toLocaleString()} km</span></div>` : ''}
+            </div>
+            <p class="car-desc">${car.description ? car.description.substring(0, 100) + '…' : ''}</p>
+            <div class="car-footer">
+              <div class="car-price">
+                <span class="price-label">Price</span>
+                <span class="price-val">${priceDisplay}</span>
+              </div>
+              <a href="https://wa.me/254797154280?text=Hello%20Ignition%20Driveke!%20I'm%20interested%20in%20the%20${encodeURIComponent(car.make + ' ' + car.model + ' ' + car.year)}" class="btn-inquire" target="_blank">Inquire</a>
+            </div>
+          </div>`;
+
+        grid.appendChild(card);
+      });
+    }
+
+    document.getElementById('btn-apply').addEventListener('click', applyFilters);
+    document.getElementById('btn-reset').addEventListener('click', resetFilters);
+
+    boot();
+  </script>
+</body>
+</html>
