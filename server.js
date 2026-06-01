@@ -307,6 +307,23 @@ app.get('/api/cars', (req, res) => {
             description: "Mercedes-Benz C200 Avant-Garde - Luxury sedan with sporty styling.",
             price: 1950000
         }
+        {
+            id: 16,
+            images: [
+                "/images/" + encodeURIComponent( "Defender Image 2026-06-01 at 13.55.40.jpeg"),
+                "/images/" + encodeURIComponent("Defender Image 2026-06-01 at 13.55.40 (2).jpeg"),
+                "/images/" + encodeURIComponent("Defender Image 2026-06-01 at 13.55.41 (1).jpeg")
+            ],
+            make: "Land Rover",
+            model: "Defender PUMA",
+            year: 2012,
+            engineSize: "2.2L",
+            transmission: "Manual",
+            description: "Land Rover Defender PUMA, perfect car for an off-roading enthusiast.",
+            price: 3500000
+
+
+        }
     ];
 
     // Apply filters

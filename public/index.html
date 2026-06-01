@@ -554,7 +554,7 @@
 
   <!-- TOPBAR -->
   <div id="topbar">
-    📞 Book a Test Drive: <strong>0797 154 280</strong> | <strong>0759 267 735</strong> | Driven with Passion, Fueled by Quality
+    📞 📞 Book a Test Drive: <strong>0759 267 735</strong> | Driven with Passion, Fueled by Quality
   </div>
 
   <!-- NAVBAR -->
@@ -570,8 +570,8 @@
     </div>
     <ul class="nav-links">
       <li><a href="#inventory">Inventory</a></li>
-      <li><a href="tel:0797154280">Call</a></li>
-      <li><a href="https://wa.me/254797154280" class="nav-cta" target="_blank">WhatsApp</a></li>
+      <li><a href="tel:0759267735">Call</a></li>
+      <li><a href="https://wa.me/254759267735" class="nav-cta" target="_blank">WhatsApp</a></li>
     </ul>
   </nav>
 
@@ -583,7 +583,7 @@
       <p class="hero-subtitle">Curated selection of quality pre-owned vehicles — ready to be yours.</p>
       <div class="hero-actions">
         <a href="#inventory" class="btn-primary">Explore Inventory</a>
-        <a href="https://wa.me/254797154280" class="btn-ghost" target="_blank">WhatsApp Us</a>
+        <a href="https://wa.me/254759267735" class="btn-ghost" target="_blank">WhatsApp Us</a>
       </div>
     </div>
   </section>
@@ -645,10 +645,10 @@
   <footer>
     &copy; 2026 IGNITION DRIVEKE. All rights reserved. | Driven with Passion, Fueled by Quality
     <br><br>
-    📞 <a href="tel:0797154280">0797 154 280</a> | <a href="tel:0759267735">0759 267 735</a> | <a href="https://wa.me/254797154280" target="_blank">WhatsApp</a>
+    📞 <a href="tel:0797154280">0797 154 280</a> | <a href="tel:0759267735">0759 267 735</a> | <a href="https://wa.me/254759267735" target="_blank">WhatsApp</a>
   </footer>
 
-  <script>
+    <script>
     const API = '/api/cars';
     let allCars = [];
     let filteredCars = [];
@@ -722,95 +722,103 @@
     }
 
     function renderGrid(cars) {
-  const grid = document.getElementById('car-grid');
-  const noResults = document.getElementById('no-results');
-  grid.innerHTML = '';
+      const grid = document.getElementById('car-grid');
+      const noResults = document.getElementById('no-results');
+      grid.innerHTML = '';
 
-  if (!cars.length) {
-    noResults.style.display = 'block';
-    return;
-  }
-  noResults.style.display = 'none';
+      if (!cars.length) {
+        noResults.style.display = 'block';
+        return;
+      }
+      noResults.style.display = 'none';
 
-  cars.forEach((car, idx) => {
-    const card = document.createElement('div');
-    card.className = 'car-card';
-    card.style.animationDelay = `${idx * 0.03}s`;
+      cars.forEach((car, idx) => {
+        const card = document.createElement('div');
+        card.className = 'car-card';
 
-    let images = car.images || car.image || [];
-    if (!Array.isArray(images)) images = [images];
-    if (images.length === 0) {
-      images = ['data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="400" height="200"><rect fill="%231a1a1a" width="400" height="200"/><text fill="%235a5752" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="14">No Image</text></svg>')];
+        let images = car.images || car.image || [];
+        if (!Array.isArray(images)) images = [images];
+        if (images.length === 0) {
+          images = ['data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="400" height="200"><rect fill="%231a1a1a" width="400" height="200"/><text fill="%235a5752" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="14">No Image</text></svg>')];
+        }
+
+        const carId = 'c' + car.id + '-' + idx;
+
+        const imageHTML = images.map((img, i) => `
+          <img src="${img}" 
+               alt="${car.make} ${car.model}" 
+               style="${i === 0 ? '' : 'display:none'}"
+               onerror="this.src='data:image/svg+xml,${encodeURIComponent('<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"400\" height=\"200\"><rect fill=\"%231a1a1a\" width=\"400\" height=\"200\"/><text fill=\"%235a5752\" x=\"50%\" y=\"50%\" dominant-baseline=\"middle\" text-anchor=\"middle\" font-family=\"sans-serif\" font-size=\"12\">Error</text></svg>')}'">
+        `).join('');
+
+        const navButtons = images.length > 1 ? `
+          <button class="img-nav prev" onclick="changeImg('${carId}', -1, ${images.length})">❮</button>
+          <button class="img-nav next" onclick="changeImg('${carId}', 1, ${images.length})">❯</button>
+          <div class="img-counter" id="counter-${carId}">1 / ${images.length}</div>
+        ` : '';
+
+        const priceDisplay = typeof car.price === 'number'
+          ? 'KSh ' + car.price.toLocaleString()
+          : 'KSh ' + car.price;
+
+        card.innerHTML = `
+          <div class="car-img-wrap" id="cont-${carId}">
+            ${imageHTML}
+            ${navButtons}
+          </div>
+          <div class="car-info">
+            <div class="car-make">${car.make}</div>
+            <div class="car-model">${car.model}</div>
+            <div class="car-specs">
+              <div class="spec-item"><span class="spec-label">Year</span><span class="spec-val">${car.year}</span></div>
+              <div class="spec-item"><span class="spec-label">Engine</span><span class="spec-val">${car.engineSize}</span></div>
+              <div class="spec-item"><span class="spec-label">Gearbox</span><span class="spec-val">${car.transmission}</span></div>
+              ${car.mileage ? `<div class="spec-item"><span class="spec-label">Mileage</span><span class="spec-val">${car.mileage.toLocaleString()} km</span></div>` : ''}
+            </div>
+            <p class="car-desc">${car.description ? car.description.substring(0, 100) + '…' : ''}</p>
+            <div class="car-footer">
+              <div class="car-price">
+                <span class="price-label">Price</span>
+                <span class="price-val">${priceDisplay}</span>
+              </div>
+              <a href="https://wa.me/254797154280?text=Hello%20Ignition%20Driveke!%20I'm%20interested%20in%20the%20${encodeURIComponent(car.make + ' ' + car.model + ' ' + car.year)}" class="btn-inquire" target="_blank">Inquire</a>
+            </div>
+          </div>`;
+        grid.appendChild(card);
+      });
     }
 
-    const carId = 'c' + car.id + '-' + idx;
+    // Image navigation
+    window.changeImg = function(carId, direction, total) {
+      const container = document.getElementById('cont-' + carId);
+      if (!container) return;
+      const images = container.querySelectorAll('img');
+      const counter = document.getElementById('counter-' + carId);
+      
+      let currentIndex = 0;
+      images.forEach((img, i) => {
+        if (img.style.display !== 'none') currentIndex = i;
+      });
+      
+      let newIndex = currentIndex + direction;
+      if (newIndex >= total) newIndex = 0;
+      if (newIndex < 0) newIndex = total - 1;
+      
+      images.forEach(img => img.style.display = 'none');
+      images[newIndex].style.display = 'block';
+      
+      if (counter) counter.textContent = `${newIndex + 1} / ${total}`;
+    };
 
-    const imageHTML = images.map((img, i) => `
-      <img src="${img}" 
-           alt="${car.make} ${car.model}" 
-           style="${i === 0 ? '' : 'display:none'}"
-           onerror="this.src='data:image/svg+xml,${encodeURIComponent('<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"400\" height=\"200\"><rect fill=\"%231a1a1a\" width=\"400\" height=\"200\"/><text fill=\"%235a5752\" x=\"50%\" y=\"50%\" dominant-baseline=\"middle\" text-anchor=\"middle\" font-family=\"sans-serif\" font-size=\"12\">Error</text></svg>')}'">
-    `).join('');
+    // Filter toggle for mobile
+    const filterToggle = document.getElementById('filter-toggle');
+    const filterGridBody = document.getElementById('filter-grid-body');
+    const filterArrow = document.getElementById('filter-arrow');
 
-    const navButtons = images.length > 1 ? `
-      <button class="img-nav prev" onclick="changeImg('${carId}', -1, ${images.length})">❮</button>
-      <button class="img-nav next" onclick="changeImg('${carId}', 1, ${images.length})">❯</button>
-      <div class="img-counter" id="counter-${carId}">1 / ${images.length}</div>
-    ` : '';
+    if (window.innerWidth <= 768) {
+      filterGridBody.classList.remove('open');
+    }
 
-    const priceDisplay = typeof car.price === 'number'
-      ? 'KSh ' + car.price.toLocaleString()
-      : 'KSh ' + car.price;
-
-    card.innerHTML = `
-      <div class="car-img-wrap" id="cont-${carId}">
-        ${imageHTML}
-        ${navButtons}
-      </div>
-      <div class="car-info">
-        <div class="car-make">${car.make}</div>
-        <div class="car-model">${car.model}</div>
-        <div class="car-specs">
-          <div class="spec-item"><span class="spec-label">Year</span><span class="spec-val">${car.year}</span></div>
-          <div class="spec-item"><span class="spec-label">Engine</span><span class="spec-val">${car.engineSize}</span></div>
-          <div class="spec-item"><span class="spec-label">Gearbox</span><span class="spec-val">${car.transmission}</span></div>
-          ${car.mileage ? `<div class="spec-item"><span class="spec-label">Mileage</span><span class="spec-val">${car.mileage.toLocaleString()} km</span></div>` : ''}
-        </div>
-        <p class="car-desc">${car.description ? car.description.substring(0, 100) + '…' : ''}</p>
-        <div class="car-footer">
-          <div class="car-price">
-            <span class="price-label">Price</span>
-            <span class="price-val">${priceDisplay}</span>
-          </div>
-          <a href="https://wa.me/254797154280?text=Hello%20Ignition%20Driveke!%20I'm%20interested%20in%20the%20${encodeURIComponent(car.make + ' ' + car.model + ' ' + car.year)}" class="btn-inquire" target="_blank">Inquire</a>
-        </div>
-      </div>`;
-
-    grid.appendChild(card);
-  });
-}
-
-// Image navigation
-window.changeImg = function(carId, direction, total) {
-  const container = document.getElementById('cont-' + carId);
-  if (!container) return;
-  const images = container.querySelectorAll('img');
-  const counter = document.getElementById('counter-' + carId);
-  
-  let currentIndex = 0;
-  images.forEach((img, i) => {
-    if (img.style.display !== 'none') currentIndex = i;
-  });
-  
-  let newIndex = currentIndex + direction;
-  if (newIndex >= total) newIndex = 0;
-  if (newIndex < 0) newIndex = total - 1;
-  
-  images.forEach(img => img.style.display = 'none');
-  images[newIndex].style.display = 'block';
-  
-  if (counter) counter.textContent = `${newIndex + 1} / ${total}`;
-};
     filterToggle.addEventListener('click', () => {
       if (window.innerWidth <= 768) {
         filterGridBody.classList.toggle('open');
